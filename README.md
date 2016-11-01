@@ -18,7 +18,7 @@ To run this application you need to have the following installed:
 * [Microsoft JDBC Driver](https://www.microsoft.com/en-us/download/details.aspx?id=11774)
 * A SQL Server instance running somwhere that you can connect to.
 
-:exclamation:##Before you run this application, change the connectionUrl information: server name, port, default database, user, password##
+:exclamation:Before you run this application, change the connectionUrl information: server name, port, default database, user, password:exclamation:
 
 ### After making changes to the .java file, recompile with this command:
 `javac columnstoreDemo.java`

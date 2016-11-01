@@ -28,6 +28,3 @@ To run this application you need to have the following installed:
 
 ### Example:
 `java -cp .:/Users/travis/Projects/sqljdbc42.jar columnstoreDemo`
-
-#### If you want to change the code and recompile it, run this command:
-`javac columnstoreDemo.java`

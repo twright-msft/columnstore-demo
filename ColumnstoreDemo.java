@@ -37,7 +37,7 @@ public class ColumnstoreDemo {
                 sql = new StringBuilder()
                         .append("USE Example; ")
                         .append("WITH a AS (SELECT * FROM (VALUES(1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS a(a)) ")
-                        .append("SELECT TOP(50000000) ")
+                        .append("SELECT TOP(5000000) ")
                         .append("ROW_NUMBER() OVER (ORDER BY a.a) AS OrderItemId ")
                         .append(",a.a + b.a + c.a + d.a + e.a + f.a + g.a + h.a AS OrderId ")
                         .append(",a.a * 10 AS Price ")

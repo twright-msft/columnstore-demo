@@ -76,7 +76,7 @@ public class ColumnstoreDemo {
     }
 
     public static long SumPrice (Connection connection){
-        String sql = "SELECT SUM(Price), COUNT(*) FROM Orders;";
+        String sql = "SELECT SUM(Price) FROM Orders;";
         long startTime = System.currentTimeMillis();
         try (Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(sql)) {

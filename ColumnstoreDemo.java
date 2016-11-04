@@ -37,7 +37,7 @@ public class ColumnstoreDemo {
                 sql = new StringBuilder()
                         .append("USE Example; ")
                         .append("WITH a AS (SELECT * FROM (VALUES(1),(2),(3),(4),(5),(6),(7),(8),(9),(10)) AS a(a)) ")
-                        .append("SELECT TOP(5000000) ")
+                        .append("SELECT TOP(50000000) ")
                         .append("ROW_NUMBER() OVER (ORDER BY a.a) AS OrderItemId ")
                         .append(",a.a + b.a + c.a + d.a + e.a + f.a + g.a + h.a AS OrderId ")
                         .append(",a.a * 10 AS Price ")
@@ -47,23 +47,24 @@ public class ColumnstoreDemo {
                         .toString();
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("done.");
+                    System.out.println("Done!");
                 }
 
-                // Execute SQL query without columnstore index
-                System.out.println("Executing query again without columnstore index added, please wait ... ");
+                // Execute SQL query without a columnstore index
                 long elapsedTimeWithoutIndex = SumPrice(connection);
-
-                System.out.print("Adding a add a columnstore index to table 'Orders'  ... ");
+                System.out.println("Query time WITHOUT columnstore index (ms): " + elapsedTimeWithoutIndex);
+                
+                //Add a columnstore index
+                System.out.print("Adding a columnstore index to the 'Orders' table.  Please wait ... ");
                 sql = "CREATE CLUSTERED COLUMNSTORE INDEX columnstoreindex ON Orders;";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("done.");
+                    System.out.println("Done!");
                 }
 
-                // Execute the same SQL query again after columnstore index was added
-                System.out.println("Executing query again with columnstore index added, please wait ... ");
+                // Execute the same SQL query again after the columnstore index is added
                 long elapsedTimeWithIndex = SumPrice(connection);
+                System.out.println("Query time WITH columnstore index (ms): " + elapsedTimeWithIndex);
 
                 //Show results
                 System.out.println("Performance improvement with columnstore index: " + elapsedTimeWithoutIndex/elapsedTimeWithIndex + "x!");
@@ -81,7 +82,6 @@ public class ColumnstoreDemo {
                 ResultSet resultSet = statement.executeQuery(sql)) {
             while (resultSet.next()) {
                 long elapsedTime = System.currentTimeMillis() - startTime;
-                System.out.println("QueryTime: " + elapsedTime + "ms");
                 return elapsedTime;
             }
         } catch (Exception e) {

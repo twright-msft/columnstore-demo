@@ -4,7 +4,7 @@ public class ColumnstoreDemo {
 
     public static void main(String[] args) {
         //Change 
-        String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=master;user=sa;password=sa";
+        String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=master;user=sa;password=Yukon900";
 
         // Load SQL Server JDBC driver and establish connection.
         try {

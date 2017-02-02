@@ -21,10 +21,10 @@ To run this application you need to have the following installed:
 :exclamation:Before you run this application, change the connectionUrl information: server name, port, default database, user, password:exclamation:
 
 ### After making changes to the .java file, recompile with this command:
-`javac columnstoreDemo.java`
+`javac ColumnstoreDemo.java`
 
 ### To run this application from the directory where the project is cloned:
-`java -cp .:/<location of JDBC driver jar> columnstoreDemo`
+`java -cp .:/<location of JDBC driver jar> ColumnstoreDemo`
 
 ### Example:
-`java -cp .:/Users/travis/Projects/sqljdbc42.jar columnstoreDemo`
+`java -cp .:/Users/travis/Projects/sqljdbc42.jar ColumnstoreDemo`
